@@ -1,0 +1,320 @@
+openapi: 3.0.3
+info:
+  title: nautible-app-ms-delivery
+  version: 1.0.0-SNAPSHOT
+servers:
+- url: http://localhost:8080/
+paths:
+  /delivery/{deliveryNo}:
+    get:
+      tags:
+        - RestDeliveryService
+      operationId: getByDeliveryNo
+      summary: 配送取得
+      description: 配送取得
+      parameters:
+      - name: deliveryNo
+        in: path
+        description: 配送No
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestGetByDeliveryIdResponse'
+        404:
+          description: not found
+          content: {}
+    delete:
+      tags:
+        - RestDeliveryService
+      operationId: deleteByDeliveryNo
+      summary: 配送削除
+      description: 配送削除
+      parameters:
+      - name: deliveryNo
+        in: path
+        description: 配送No
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: successful operation
+          content: {}
+        404:
+          description: not found
+          content: {}
+  /delivery/:
+    put:
+      tags:
+        - RestDeliveryService
+      operationId: update
+      summary: 配送更新
+      description: 配送更新
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestUpdateDeliveryRequest'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestUpdateDeliveryResponse'
+        404:
+          description: not found
+          content: {}
+    post:
+      tags:
+        - RestDeliveryService
+      operationId: create
+      summary: 配送作成
+      description: 配送作成
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestCreateDeliveryRequest'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestCreateDeliveryResponse'
+        404:
+          description: not found
+          content: {}
+  /delivery/confirmShipping/:
+    post:
+      tags:
+        - RestDeliveryService
+      operationId: confirmShipping
+      summary: 配送状況の確認
+      description: 配送状況の確認を行い、配送済みのものは、xx に通知する
+      responses:
+        200:
+          description: successful operation
+  /dapr/subscribe:
+    get:
+      tags:
+        - RestDeliveryService
+      operationId: daprSubscribe
+      summary: daprSubscribe
+      description: daprSubscribe
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DaprSubscribe'
+components:
+  schemas:
+    RestCreateDeliveryRequest:
+      type: object
+      required:
+        - deliveryPlanDate
+        - deliveryPrice
+        - deliveryName
+        - deliveryPostCode
+        - deliveryAddress1
+        - deliveryAddress2
+        - deliveryTel
+      properties:
+        deliveryPlanDate:
+          type: string
+          description: 配送予定日
+          format: date
+          example: '2020-01-01'
+        deliveryPrice:
+          type: integer
+          description: 配送金額
+          format: int32
+          example: 123
+        deliveryName:
+          type: string
+          description: 配送先宛名
+          format: string
+          example: '配送先様'
+        deliveryPostCode:
+          type: string
+          description: 配送先郵便番号
+          example: "123-4567"
+          pattern: "[0-9]{3}-[0-9]{4}"
+        deliveryAddress1:
+          type: string
+          description: 配送先住所1
+          example: 'tokyo'
+        deliveryAddress2:
+          type: string
+          description: 配送先住所2
+          example: 'W101'
+        deliveryTel:
+          type: string
+          description: 配送先電話番号
+          example: 03-1234-1234
+        deliveryStatus:
+          type: string
+          description: 配送状況。0:配送依頼,1:配送準備中,2:配送中,3:配送完了,4:キャンセル
+          enum:
+            - 'REQUEST_DELIVERY'
+            - 'DELIVERY_IN_PREPARATION'
+            - 'IN_DELIVERY'
+            - 'DELIVERY_COMPLETE'
+            - 'CANCEL'
+    RestUpdateDeliveryRequest:
+      type: object
+      required:
+        - deliveryNo
+        - deliveryPlanDate
+        - deliveryPrice
+        - deliveryName
+        - deliveryPostCode
+        - deliveryAddress1
+        - deliveryAddress2
+        - deliveryTel
+      properties:
+        deliveryNo:
+          type: string
+          description: 注文番号
+          example: O0000000001
+        deliveryPlanDate:
+          type: string
+          description: 配送予定日
+          format: date
+          example: '2020-01-01'
+        deliveryPrice:
+          type: integer
+          description: 配送金額
+          format: int32
+          example: 123
+        deliveryName:
+          type: string
+          description: 配送先宛名
+          format: string
+          example: '配送先様'
+        deliveryPostCode:
+          type: string
+          description: 配送先郵便番号
+          example: "123-4567"
+          pattern: "[0-9]{3}-[0-9]{4}"
+        deliveryAddress1:
+          type: string
+          description: 配送先住所1
+          example: 'tokyo'
+        deliveryAddress2:
+          type: string
+          description: 配送先住所2
+          example: 'W101'
+        deliveryTel:
+          type: string
+          description: 配送先電話番号
+          example: 03-1234-1234
+        deliveryStatus:
+          type: string
+          description: 配送状況。0:配送依頼,1:配送準備中,2:配送中,3:配送完了,4:キャンセル
+          enum:
+            - 'REQUEST_DELIVERY'
+            - 'DELIVERY_IN_PREPARATION'
+            - 'IN_DELIVERY'
+            - 'DELIVERY_COMPLETE'
+            - 'CANCEL'
+    RestDelivery:
+      type: object
+      required:
+        - deliveryNo
+        - deliveryPlanDate
+        - deliveryPrice
+        - deliveryName
+        - deliveryPostCode
+        - deliveryAddress1
+        - deliveryAddress2
+        - deliveryTel
+      properties:
+        deliveryNo:
+          type: string
+          description: 注文番号
+          example: O0000000001
+        deliveryPlanDate:
+          type: string
+          description: 配送予定日
+          format: date
+          example: '2020-01-01'
+        deliveryPrice:
+          type: integer
+          description: 配送金額
+          format: int32
+          example: 123
+        deliveryName:
+          type: string
+          description: 配送先宛名
+          format: string
+          example: '配送先様'
+        deliveryPostCode:
+          type: string
+          description: 配送先郵便番号
+          example: "123-4567"
+          pattern: "[0-9]{3}-[0-9]{4}"
+        deliveryAddress1:
+          type: string
+          description: 配送先住所1
+          example: 'tokyo'
+        deliveryAddress2:
+          type: string
+          description: 配送先住所2
+          example: 'W101'
+        deliveryTel:
+          type: string
+          description: 配送先電話番号
+          example: 03-1234-1234
+        deliveryStatus:
+          type: string
+          description: 配送状況。0:配送依頼,1:配送準備中,2:配送中,3:配送完了,4:キャンセル
+          enum:
+            - 'REQUEST_DELIVERY'
+            - 'DELIVERY_IN_PREPARATION'
+            - 'IN_DELIVERY'
+            - 'DELIVERY_COMPLETE'
+            - 'CANCEL'
+    RestGetByDeliveryIdResponse:
+      type: object
+      properties:
+        delivery:
+          $ref: '#/components/schemas/RestDelivery'
+    RestCreateDeliveryResponse:
+      type: object
+      properties:
+        delivery:
+          $ref: '#/components/schemas/RestDelivery'
+    RestUpdateDeliveryResponse:
+      type: object
+      properties:
+        delivery:
+          $ref: '#/components/schemas/RestDelivery'
+    DaprSubscribe:
+      type: object
+      properties:
+        pubsubname:
+          type: string
+          description: pubsub
+          example: pubsub
+        topic:
+          type: string
+          description: topic
+          example: topic
+        route:
+          type: string
+          description: route
+          example: /delivery
