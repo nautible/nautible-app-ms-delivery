@@ -167,11 +167,11 @@ components:
           example: 03-1234-1234
         deliveryStatus:
           type: string
-          description: 配送状況。0:配送依頼,1:配送準備中,2:配送中,3:配送完了,4:キャンセル
+          description: 配送状況。0:配送依頼,1:配送準備中,2:発送完了,3:配送完了,4:キャンセル
           enum:
             - 'REQUEST_DELIVERY'
             - 'DELIVERY_IN_PREPARATION'
-            - 'IN_DELIVERY'
+            - 'SHIPMENT_COMPLETE'
             - 'DELIVERY_COMPLETE'
             - 'CANCEL'
     RestUpdateDeliveryRequest:
@@ -185,6 +185,7 @@ components:
         - deliveryAddress1
         - deliveryAddress2
         - deliveryTel
+        - deliveryStatus
       properties:
         deliveryNo:
           type: string
@@ -228,7 +229,7 @@ components:
           enum:
             - 'REQUEST_DELIVERY'
             - 'DELIVERY_IN_PREPARATION'
-            - 'IN_DELIVERY'
+            - 'SHIPMENT_COMPLETE'
             - 'DELIVERY_COMPLETE'
             - 'CANCEL'
     RestDelivery:
@@ -285,7 +286,7 @@ components:
           enum:
             - 'REQUEST_DELIVERY'
             - 'DELIVERY_IN_PREPARATION'
-            - 'IN_DELIVERY'
+            - 'SHIPMENT_COMPLETE'
             - 'DELIVERY_COMPLETE'
             - 'CANCEL'
     RestGetByDeliveryIdResponse:

@@ -1,5 +1,7 @@
 package jp.co.ogis_ri.nautible.app.delivery.domain;
 
+import java.util.List;
+
 public interface DeliveryRepository {
 
     /** 
@@ -34,6 +36,6 @@ public interface DeliveryRepository {
      * @param deliveryStatus
      * @return
      */
-    Delivery findByDeliveryStatus(DeliveryStatus deliveryStatus);
+    List<Delivery> findByDeliveryStatus(DeliveryStatus deliveryStatus);
 
 }

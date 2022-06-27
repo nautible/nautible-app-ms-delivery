@@ -1,7 +1,9 @@
 package jp.co.ogis_ri.nautible.app.delivery.outbound.dynamodb;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -43,10 +45,10 @@ public class DynamodbDeliveryRepositoryImpl implements DeliveryRepository {
     @Override
     public Delivery create(Delivery delivery) {
         int sequence = getSequenceNumber(DELIVERY_TABLE_NAME);
-        delivery.setDeliveryNo("O" + String.format("%010d", sequence));
+        delivery.setDeliveryNo("D" + String.format("%010d", sequence));
         getTable(DELIVERY_TABLE_NAME, DynamodbDelivery.class)
                 .putItem(dynamodbDeliveryMapper.deliveryToDynamodbDelivery(delivery));
-        return null;
+        return delivery;
     }
 
     @Override
@@ -63,9 +65,18 @@ public class DynamodbDeliveryRepositoryImpl implements DeliveryRepository {
     }
 
     @Override
-    public Delivery findByDeliveryStatus(DeliveryStatus deliveryStatus) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Delivery> findByDeliveryStatus(DeliveryStatus deliveryStatus) {
+        // full scan して該当するものを選ぶ
+
+        return dynamodbDeliveryMapper
+                .dynamodbDeliveryToDelivery(getTable(DELIVERY_TABLE_NAME, DynamodbDelivery.class)
+                        .scan().items().stream().filter(deliveryItem -> {
+                            if (deliveryStatus != null && deliveryStatus.equals(
+                                    dynamodbDeliveryMapper.dynamodbDeliveryStatusToDeliveryStatus(deliveryItem.getDeliveryStatus())) == false) {
+                                return false;
+                            }
+                            return true;
+                        }).collect(Collectors.toList()));
     }
 
     /**

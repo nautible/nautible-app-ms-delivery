@@ -1,5 +1,6 @@
 package jp.co.ogis_ri.nautible.app.delivery.domain;
 
+import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -52,7 +53,11 @@ public class DeliveryService {
     }
 
     public void confirmShipping(){
-        // TODO
+
+        List<Delivery> deliveryList = deliveryRepository.get().findByDeliveryStatus(DeliveryStatus.SHIPMENT_COMPLETE);
+        // TODO 更新処理
+        // 取得結果
+        deliveryList.stream().forEach(System.out::println);
     }
 
 }
