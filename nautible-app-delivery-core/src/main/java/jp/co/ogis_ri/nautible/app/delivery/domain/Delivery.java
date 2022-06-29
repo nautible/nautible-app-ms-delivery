@@ -30,6 +30,17 @@ public class Delivery {
     /**
      * 配送番号を取得する
      * 
+     * @param deliveryNo 配送番号
+     * @return {@link Delivery}
+     */
+    public Delivery deliveryNo(String deliveryNo) {
+        this.deliveryNo = deliveryNo;
+        return this;
+    }
+
+    /**
+     * 配送番号を取得する
+     * 
      * @return 配送番号
      */
     public String getDeliveryNo() {
@@ -43,6 +54,17 @@ public class Delivery {
      */
     public void setDeliveryNo(String deliveryNo) {
         this.deliveryNo = deliveryNo;
+    }
+
+    /**
+     * 配送予定日を設定する
+     * 
+     * @param deliveryPlanDate 配送予定日
+     * @return {@link Delivery}
+     */
+    public Delivery deliveryPlanDate(LocalDate deliveryPlanDate) {
+        this.deliveryPlanDate = deliveryPlanDate;
+        return this;
     }
 
     /**
@@ -64,6 +86,17 @@ public class Delivery {
     }
 
     /**
+     * 配送金額を設定する
+     * 
+     * @param deliveryPrice 配送金額
+     * @return {@link Delivery}
+     */
+    public Delivery deliveryPrice(Integer deliveryPrice) {
+        this.deliveryPrice = deliveryPrice;
+        return this;
+    }
+
+    /**
      * 配送金額を取得する
      * 
      * @return 配送金額
@@ -79,6 +112,17 @@ public class Delivery {
      */
     public void setDeliveryPrice(Integer deliveryPrice) {
         this.deliveryPrice = deliveryPrice;
+    }
+
+    /**
+     * 配送先宛名を設定する
+     * 
+     * @param deliveryName 配送先宛名
+     * @return {@link Delivery}
+     */
+    public Delivery deliveryName(String deliveryName) {
+        this.deliveryName = deliveryName;
+        return this;
     }
 
     /**
@@ -100,6 +144,17 @@ public class Delivery {
     }
 
     /**
+     * 配送先郵便番号を設定する
+     * 
+     * @param deliveryPostCode 配送先郵便番号
+     * @return {@link Delivery}
+     */
+    public Delivery deliveryPostCode(String deliveryPostCode) {
+        this.deliveryPostCode = deliveryPostCode;
+        return this;
+    }
+
+    /**
      * 配送先郵便番号を取得する
      * 
      * @return 配送先郵便番号
@@ -115,6 +170,17 @@ public class Delivery {
      */
     public void setDeliveryPostCode(String deliveryPostCode) {
         this.deliveryPostCode = deliveryPostCode;
+    }
+
+    /**
+     * 配送先住所1 を設定する
+     * 
+     * @param deliveryAddress1 配送先住所1
+     * @return {@link Delivery}
+     */
+    public Delivery deliveryAddress1(String deliveryAddress1) {
+        this.deliveryAddress1 = deliveryAddress1;
+        return this;
     }
 
     /**
@@ -136,6 +202,17 @@ public class Delivery {
     }
 
     /**
+     * 配送先住所2 を設定する
+     * 
+     * @param deliveryAddress2 配送先住所2
+     * @return {@link Delivery}
+     */
+    public Delivery deliveryAddress2(String deliveryAddress2) {
+        this.deliveryAddress2 = deliveryAddress2;
+        return this;
+    }
+
+    /**
      * 配送先住所2 を取得する
      * 
      * @return 配送先住所2
@@ -154,6 +231,17 @@ public class Delivery {
     }
 
     /**
+     * 配送先電話番号を設定する
+     * 
+     * @param deliveryTel 配送先電話番号
+     * @return {@link Delivery}
+     */
+    public Delivery deliveryTel(String deliveryTel) {
+        this.deliveryTel = deliveryTel;
+        return this;
+    }
+
+    /**
      * 配送先電話番号を取得する
      * 
      * @return
@@ -169,6 +257,17 @@ public class Delivery {
      */
     public void setDeliveryTel(String deliveryTel) {
         this.deliveryTel = deliveryTel;
+    }
+
+    /**
+     * 配送状況を設定する
+     * 
+     * @param deliveryStatus 配送状況
+     * @return {@link Delivery}
+     */
+    public Delivery status(DeliveryStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
+        return this;
     }
 
     /**

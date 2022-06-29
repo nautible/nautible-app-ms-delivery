@@ -189,8 +189,8 @@ components:
       properties:
         deliveryNo:
           type: string
-          description: 注文番号
-          example: O0000000001
+          description: 配送番号
+          example: D0000000001
         deliveryPlanDate:
           type: string
           description: 配送予定日
@@ -225,7 +225,7 @@ components:
           example: 03-1234-1234
         deliveryStatus:
           type: string
-          description: 配送状況。0:配送依頼,1:配送準備中,2:配送中,3:配送完了,4:キャンセル
+          description: 配送状況。0:配送依頼,1:配送準備中,2:発送完了,3:配送完了,4:キャンセル
           enum:
             - 'REQUEST_DELIVERY'
             - 'DELIVERY_IN_PREPARATION'
@@ -246,8 +246,8 @@ components:
       properties:
         deliveryNo:
           type: string
-          description: 注文番号
-          example: O0000000001
+          description: 配送番号
+          example: D0000000001
         deliveryPlanDate:
           type: string
           description: 配送予定日
@@ -282,7 +282,7 @@ components:
           example: 03-1234-1234
         deliveryStatus:
           type: string
-          description: 配送状況。0:配送依頼,1:配送準備中,2:配送中,3:配送完了,4:キャンセル
+          description: 配送状況。0:配送依頼,1:配送準備中,2:発送完了,3:配送完了,4:キャンセル
           enum:
             - 'REQUEST_DELIVERY'
             - 'DELIVERY_IN_PREPARATION'

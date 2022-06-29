@@ -1,12 +1,16 @@
 package jp.co.ogis_ri.nautible.app.delivery.domain;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 @ApplicationScoped
 public class DeliveryService {
+
+    Logger LOG = Logger.getLogger(DeliveryService.class.getName());
 
     @Inject
     Instance<DeliveryRepository> deliveryRepository;
@@ -52,12 +56,20 @@ public class DeliveryService {
         deliveryRepository.get().delete(deliveryNo);
     }
 
-    public void confirmShipping(){
+    /**
+     * 「発送完了」状態の配送を、注文に通知し、配送の状態を「配送完了」にする
+     */
+    public void confirmShipping() {
 
-        List<Delivery> deliveryList = deliveryRepository.get().findByDeliveryStatus(DeliveryStatus.SHIPMENT_COMPLETE);
-        // TODO 更新処理
-        // 取得結果
-        deliveryList.stream().forEach(System.out::println);
+        List<Delivery> deliveryList =
+                deliveryRepository.get().findByDeliveryStatus(DeliveryStatus.SHIPMENT_COMPLETE);
+
+        deliveryList.stream().forEach(d -> {
+            // TODO 注文に通知
+            LOG.log(Level.INFO, "change status : " + d.getDeliveryNo());
+            deliveryRepository.get().update(d.status(DeliveryStatus.DELIVERY_COMPLETE));
+        });
+        
     }
 
 }
