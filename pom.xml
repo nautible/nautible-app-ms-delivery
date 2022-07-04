@@ -92,11 +92,6 @@
           <version>${quarkus.platform.version}</version>
           <extensions>true</extensions>
         </plugin>
-        <!-- <plugin>
-          <groupId>io.quarkus</groupId>
-          <artifactId>quarkus-maven-plugin</artifactId>
-          <version>${quarkus-plugin.version}</version>
-        </plugin> -->
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${compiler-plugin.version}</version>
