@@ -55,10 +55,11 @@ aws_secret_access_key = test-secret
 ```
 aws dynamodb scan --table-name=Delivery --profile localstack --endpoint-url=http://localhost:4566
 ```
+
 ##  CronJob の確認
 
   - job の定義確認
-    
+
   ```
   kubectl get cronjob delivery-cronjob -n nautible-app-ms
   ```
@@ -76,4 +77,3 @@ aws dynamodb scan --table-name=Delivery --profile localstack --endpoint-url=http
     [nautible-app-ms-delivery] 2022-07-04 07:34:01,349 INFO  [jp.co.ogi.nau.app.del.dom.DeliveryService] (executor-thread-5) change status : D0000000001
     [nautible-app-ms-delivery] 2022-07-04 07:34:01,380 INFO  [jp.co.ogi.nau.app.del.dom.DeliveryService] (executor-thread-5) change status : D0000000002
     ```
-

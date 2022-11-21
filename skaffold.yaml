@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2beta12
+apiVersion: skaffold/v2beta29
 kind: Config
 metadata:
   name: nautible-app-ms-delivery
@@ -26,16 +26,15 @@ profiles:
 - name: azure
   build:
     artifacts:
-    - image: nautibledevacr.azurecr.io/nautible-app-delivery
+    - image: nautibledevacr.azurecr.io/nautible-app-ms-delivery
       custom:
-        buildCommand: build.cmd azure
+        buildCommand: ./build.sh azure
         dependencies:
           paths:
             - "."
           ignore:
-            - "**\\target\\**"
+            - "**/target/**"
   deploy:
     kustomize:
       paths:
         - ../nautible-app-ms-delivery-manifest/overlays/azure/local-dev
-
