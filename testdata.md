@@ -56,6 +56,10 @@ aws_secret_access_key = test-secret
 aws dynamodb scan --table-name=Delivery --profile localstack --endpoint-url=http://localhost:4566
 ```
 
+## Cosmondb(Monogodb)のデータ確認
+
+- http://localhost:8081/ にアクセス
+
 ##  CronJob の確認
 
   - job の定義確認

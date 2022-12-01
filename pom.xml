@@ -82,11 +82,11 @@
         <artifactId>${nautible.app.delivery.name}-aws</artifactId>
         <version>${nautible.app.delivery.version}</version>
       </dependency>
-      <!-- <dependency>
+      <dependency>
         <groupId>${nautible.app.delivery.groupId}</groupId>
         <artifactId>${nautible.app.delivery.name}-azure</artifactId>
         <version>${nautible.app.delivery.version}</version>
-      </dependency> -->
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -136,7 +136,7 @@
       <modules>
         <module>nautible-app-ms-delivery-core</module>
         <module>nautible-app-ms-delivery-aws</module>
-        <!-- <module>nautible-app-ms-delivery-azure</module> -->
+        <module>nautible-app-ms-delivery-azure</module>
         <module>nautible-app-ms-delivery-build</module>
       </modules>
     </profile>
@@ -154,7 +154,7 @@
         <module>nautible-app-ms-delivery-build</module>
       </modules>
     </profile>
-    <!-- <profile>
+    <profile>
       <id>azure</id>
       <activation>
         <property>
@@ -167,6 +167,6 @@
         <module>nautible-app-ms-delivery-azure</module>
         <module>nautible-app-ms-delivery-build</module>
       </modules>
-    </profile> -->
+    </profile>
   </profiles>
 </project>
