@@ -33,7 +33,7 @@
         </dependency>
       </dependencies>
     </profile>
-    <!-- <profile>
+    <profile>
       <id>azure</id>
       <activation>
         <property>
@@ -47,7 +47,7 @@
           <artifactId>${nautible.app.delivery.name}-azure</artifactId>
         </dependency>
       </dependencies>
-    </profile> -->
+    </profile>
     <profile>
       <id>native</id>
       <activation>
