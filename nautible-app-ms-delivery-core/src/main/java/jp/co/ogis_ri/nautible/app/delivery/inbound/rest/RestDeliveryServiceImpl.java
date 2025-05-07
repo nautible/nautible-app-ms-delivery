@@ -27,7 +27,7 @@ public class RestDeliveryServiceImpl implements RestDeliveryService{
     RestDeliveryMapper mapper;
 
     @Override
-    public Response create(@Valid RestCreateDeliveryRequest restCreateDeliveryRequest) {
+    public Response create(@Valid @NotNull RestCreateDeliveryRequest restCreateDeliveryRequest) {
         final Delivery delivery = service.create(mapper.restCreateDeliveryToDelivery(restCreateDeliveryRequest));
         return Response.ok(mapper.deliveryToRestDelivery(delivery)).build();
     }
@@ -46,7 +46,7 @@ public class RestDeliveryServiceImpl implements RestDeliveryService{
     }
 
     @Override
-    public Response update(@Valid RestUpdateDeliveryRequest restUpdateDeliveryRequest) {
+    public Response update(@Valid @NotNull RestUpdateDeliveryRequest restUpdateDeliveryRequest) {
         Delivery delivery = service.update(mapper.restUpdateDelieryToDelivery(restUpdateDeliveryRequest));
         return delivery == null ? Response.status(Status.NOT_FOUND).build()
                 : Response.ok(mapper.deliveryToRestUpdateDeliveryResponse(delivery)).build();
