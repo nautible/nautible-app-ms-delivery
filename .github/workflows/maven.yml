@@ -109,7 +109,7 @@ jobs:
       # Azure
       - name: pacakge with Maven for Azure
         run: |
-          cd $GITHUB_WORKSPACE
+          cd "$GITHUB_WORKSPACE"
           mvn -B clean package -Dcloud=azure --file pom.xml -Dquarkus.package.type=fast-jar
       - name: Login via Azure CLI
         id: login-azure
